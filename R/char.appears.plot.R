@@ -15,8 +15,8 @@ char.appears.plot <- function(char.appears.df, col.palette){
               stringr::str_detect(col.palette,"#"))
 
     char.appears.df <- reshape2::melt(char.appears.df, id="Season")
-    g<-ggplot2::ggplot(data=char.appears.df,aes(y = value*100))+
-        ggiraph::geom_col_interactive(aes(x = factor(Season),
+    g<-ggplot2::ggplot(data=char.appears.df,ggplot2::aes(y = value*100))+
+        ggiraph::geom_col_interactive(ggiraph::aes(x = factor(Season),
                                  fill=variable,
                                  onclick=paste('window.open("https://mlp.fandom.com/wiki/',variable,'")'),
                                  tooltip=variable),
@@ -24,9 +24,9 @@ char.appears.plot <- function(char.appears.df, col.palette){
         ggplot2::scale_fill_manual(values=col.palette)+
         #geom_line(aes(x = Season, color=variable),size = 2)+
         ggplot2::scale_color_manual(values=col.palette)+
-        labs(x="Season",y="Percentage appearance in episodes",color="Character",fill="Character",
+        ggplot2::labs(x="Season",y="Percentage appearance in episodes",color="Character",fill="Character",
              title='Appearance of the main characters in "MLP: Friendship is Magic"')+
-        theme_dark()
+        ggplot2::theme_dark()
 
     ggiraph::girafe(ggobj = g)
 }
