@@ -9,7 +9,7 @@
 char.colors <- function(char.names){
     colors.vec <- sapply(1:length(char.names), function(i){
         #Pobierz stronę o postaci
-        char.name<-str_replace(char.names[i], fixed(" "), "_")
+        char.name<-stringr::str_replace(char.names[i], fixed(" "), "_")
         download.file(url=stringr::str_c("https://mlp.fandom.com/wiki/",char.name),destfile="mlp_fim_char.html")
         webpage <- readLines("mlp_fim_char.html")
         stopifnot(is.character(webpage),webpage[1]=="<!DOCTYPE html>")
