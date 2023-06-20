@@ -9,7 +9,7 @@
 char.colors <- function(char.names){
     colors.vec <- sapply(1:length(char.names), function(i){
         #Pobierz stronę o postaci
-        char.name<-stringr::str_replace(char.names[i], fixed(" "), "_")
+        char.name<-stringr::str_replace(char.names[i], stringr::fixed(" "), "_")
         download.file(url=stringr::str_c("https://mlp.fandom.com/wiki/",char.name),destfile="mlp_fim_char.html")
         webpage <- readLines("mlp_fim_char.html")
         stopifnot(is.character(webpage),webpage[1]=="<!DOCTYPE html>")
@@ -18,7 +18,7 @@ char.colors <- function(char.names){
         #Pobierz informację o kolorze
         color.line<-which(stringr::str_detect(webpage,"<td><b>Coat</b>"))
         color.line<-color.line+2
-        color.line.start<-stringr::str_locate(webpage[color.line],fixed("#"))[1]
+        color.line.start<-stringr::str_locate(webpage[color.line],stringr::fixed("#"))[1]
         color.name<-substr(webpage[color.line],color.line.start,color.line.start+6)
         return(color.name)
     })
