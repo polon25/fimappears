@@ -16,7 +16,7 @@ char.appears.plot <- function(char.appears.df, col.palette){
 
     char.appears.df <- reshape2::melt(char.appears.df, id="Season")
     g<-ggplot2::ggplot(data=char.appears.df,ggplot2::aes(y = value*100))+
-        ggiraph::geom_col_interactive(ggiraph::aes(x = factor(Season),
+        ggiraph::geom_col_interactive(ggplot2::aes(x = factor(Season),
                                  fill=variable,
                                  onclick=paste('window.open("https://mlp.fandom.com/wiki/',variable,'")'),
                                  tooltip=variable),
