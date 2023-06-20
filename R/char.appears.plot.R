@@ -12,7 +12,7 @@ char.appears.plot <- function(char.appears.df, col.palette){
     stopifnot(colnames(char.appears.df)[1]=="Season",
               is.character(col.palette),
               length(char.appears.df)==length(col.palette)+1,
-              str_detect(col.palette,"#"))
+              stringr::str_detect(col.palette,"#"))
 
     char.appears.df <- reshape2::melt(char.appears.df, id="Season")
     g<-ggplot2::ggplot(data=char.appears.df,aes(y = value*100))+
